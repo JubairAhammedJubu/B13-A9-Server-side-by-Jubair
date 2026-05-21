@@ -68,6 +68,16 @@ async function run() {
         res.status(500).json({message: "Server error"});
       }
     });
+
+    app.post("/facility",verifyToken, async (req, res) => {
+      const facilityData = req.body;
+      console.log(facilityData);
+      const result = await facilityCollection.insertOne(facilityData);
+
+      res.json(result);
+    });
+
+
     
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
